@@ -4,10 +4,13 @@ function comparaisonAlgos(arrayfunc, n, ...args){
     //pour chaque version de l'algo
     for(func in arrayfunc){
         let temps = averageTimeAlgo(func, n, ...args);
-        tabresults.add((func.name, temps));
-        console.log("L'algo " + func1.name + "avec un temps moyen de " + temps + "ms");
+        tabresults.push({ temps: temps, name: func.name });
+        console.log("L'algo " + func.name + "avec un temps moyen de " + temps + "ms");
     }
-    tabresults.sort();
+    tabresults.sort((a, b) => a.temps - b.temps);
+
+    console.log("Algo plus rapide:"+ tabresults[0].name +" pour " +tabresults[0].temps+" ms");
+    console.log("Algo plus lent:"+ tabresults[tabresults.length-1].name +" pour " +tabresults[tabresults.length-1].temps+" ms");
 }
 
 function averageTimeAlgo(algo, n, ...args){

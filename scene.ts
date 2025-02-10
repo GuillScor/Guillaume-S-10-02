@@ -28,16 +28,16 @@ interface Artist {
   }
 
   function assignStagesV2(artists, stages) {
-    const genres = new Set();
+    const genres = new Map();
     for (let stage of stages) { 
       if (!genres.has(stage.genre)){
-        genres.add(stage.genre);
+        genres.set(stage.genre, stage.id);
       }
     }
   
     for (let artist of artists) { 
       if (genres.has(artist.genre)) { 
-         //associer l'id du genre à l'artiste
+        artist.stage = genres.get(artist.genre);
       }
     }
   }
