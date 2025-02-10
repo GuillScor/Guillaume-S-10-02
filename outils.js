@@ -1,4 +1,6 @@
 function comparaisonAlgos(arrayfunc, n, ...args){
+    //arrayfunc est un tableau des algos qu'on veut comparer
+    //n est le nombre de fois que l'on souhaite tester chaque algo
     
     let tabresults = [];
     //pour chaque version de l'algo
@@ -86,3 +88,6 @@ function containsDuplicate(array) {
     memo[n] = fibonacciv2(n - 1, memo) + fibonacciv2(n - 2, memo);
     return memo[n];
   }
+let tabAlgo = [containsDuplicate(), containsDuplicatev2()];
+let arrayArg = [1,5,3,4,5];
+comparaisonAlgos(tabAlgo, 3, 0);
