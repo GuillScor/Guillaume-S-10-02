@@ -26,4 +26,4 @@ function findArtistIndexV2(artists, name) {
     }
     return -1; 
 }
-  
+
