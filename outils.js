@@ -1,15 +1,13 @@
-function comparaisonAlgos(func1, func2, n, ...args){
+function comparaisonAlgos(arrayfunc, n, ...args){
     
     let tabresults = [];
     //pour chaque version de l'algo
-    let temps = averageTimeAlgo(func1, n, ...args);
-    tabresults.add((func1.name, temps));
-    console.log("L'algo " + func1.name + "avec un temps moyen de " + temps + "ms");
-    temps = averageTimeAlgo(func2, n, ...args);
-    tabresults.add((func2.name, averageTimeAlgo(func2, n, ...args)));
-    console.log("L'algo " + func2.name + "avec un temps moyen de " + temps + "ms");
+    for(func in arrayfunc){
+        let temps = averageTimeAlgo(func, n, ...args);
+        tabresults.add((func.name, temps));
+        console.log("L'algo " + func1.name + "avec un temps moyen de " + temps + "ms");
+    }
     tabresults.sort();
-
 }
 
 function averageTimeAlgo(algo, n, ...args){
@@ -35,13 +33,53 @@ function containsDuplicate(array) {
     return false;
   }
 
+
   function containsDuplicatev2(array) {
-    for (let i = 0; i < array.length; i++) {
-      for (let j = i + 1; j < array.length; j++) {
-        if (array[i] === array[j]) {
+    const checked = new Set();
+    for (let i = 0; i < array.length; i++) { 
+        if (checked.has(array[i])) { 
           return true;
+        }
+        checked.add(array[i]); 
+    }
+    return false;
+  }
+
+  function findCommonElements(array1, array2) {
+    let commonElements = [];
+    for (let i = 0; i < array1.length; i++) {
+      for (let j = 0; j < array2.length; j++) {
+        if (array1[i] === array2[j]) {
+          commonElements.push(array1[i]);
         }
       }
     }
-    return false;
+    return commonElements;
+  }
+
+  function findCommonElementsv2(array1, array2) {
+    let commonElements = [];
+    const checked = new Set();
+    for (let i = 0; i < array1.length; i++) { 
+      checked.add(array1[i]);
+    }
+  
+    for (let i = 0; i < array2.length; i++) {
+      if (checked.has(array2[i])) { 
+        commonElements.push(array2[i]);  
+      }
+    }
+    return commonElements;
+  }
+
+  function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+
+  function fibonacciv2(n, memo = {}) {
+    if (n <= 1) return n;
+    if (memo[n]) return memo[n];
+    memo[n] = fibonacciv2(n - 1, memo) + fibonacciv2(n - 2, memo);
+    return memo[n];
   }
